@@ -21,9 +21,10 @@ app.use(function(req,res,next){
 	console.log("The file" +"" + filename +"" + "was requested.");
 	next();
 });
-app.get('/test.html', function(req, res){
+app.get('/fileName',function (req,res) {
 	//run some server-side code
-	console.log('test.html requested');
-	//note that_dirname gives the path to the studentServer.js file
-	res.sendFile(__dirname + '/test.html');
+	var fileName = req.params.fileName;
+	console.log(fileName + 'requested');
+		// note that__dirname gives the path to the studentServer.js file
+	res.sendFile(__dirname + '/'+fileName); 
 });
