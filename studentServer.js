@@ -21,10 +21,15 @@ app.use(function(req,res,next){
 	console.log("The file" +"" + filename +"" + "was requested.");
 	next();
 });
-app.get('/:fileName',function (req,res) {
+//app.get('/:fileName',function (req,res) {
 	//run some server-side code
-	var fileName = req.params.fileName;
-	console.log(fileName + 'requested');
+	//var fileName = req.params.fileName;
+	//console.log(fileName + 'requested');
 		// note that__dirname gives the path to the studentServer.js file
-	res.sendFile(__dirname + '/'+fileName); 
-});
+	//res.sendFile(__dirname + '/'+fileName); 
+//});
+
+
+//serve static files -eg. html, css
+//this should always be the last line of the server file
+app.use(express.static(__dirname));
