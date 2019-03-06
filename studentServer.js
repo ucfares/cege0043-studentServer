@@ -21,7 +21,7 @@ app.use(function(req,res,next){
 	console.log("The file" +"" + filename +"" + "was requested.");
 	next();
 });
-app.get('/fileName',function (req,res) {
+app.get('/:fileName',function (req,res) {
 	//run some server-side code
 	var fileName = req.params.fileName;
 	console.log(fileName + 'requested');
