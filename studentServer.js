@@ -11,6 +11,11 @@ app.use(bodyParser.urlencoded({
 	extended: true
 }));
 
+app.use(bodyParser.json());
+var http = require('http');
+var httpServer= http.createServer(app);
+httpServer.listen(4480);
+
 var fs = require ('fs');
 var pg = require ('pg');
 
@@ -42,10 +47,14 @@ app.get('/postgistest', function (req, res) {
 		});
 	});
 });
-app.use(bodyParser.json());
-var http = require('http');
-var httpServer= http.createServer(app);
-httpServer.listen(4480);
+
+app.post('/reflectData', function (req, res){
+	//note -POST because data is being uploaded
+	//params form the body of the request rather than the restful API
+	console.dir(req.body)
+	//echo it back
+	res.send(req.body);
+});
 
 app.get('/',function (req,res){
 	res.send("hello world from the HTTP server")
