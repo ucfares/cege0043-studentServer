@@ -6,7 +6,11 @@ var app =express();
 //add an http server to serve files to the Edge browser
 //due to certificte issues it rejects the https files if they are not 
 //directly called in a typed url
-
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+app.use(bodyParser.json());
 var http = require('http');
 var httpServer= http.createServer(app);
 httpServer.listen(4480);
@@ -32,4 +36,11 @@ app.use(function(req,res,next){
 
 //serve static files -eg. html, css
 //this should always be the last line of the server file
+app.use(function(req, res, next){
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	next();
+});
+
+
 app.use(express.static(__dirname));
