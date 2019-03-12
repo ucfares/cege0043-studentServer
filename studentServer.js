@@ -19,15 +19,14 @@ httpServer.listen(4480);
 var fs = require ('fs');
 var pg = require ('pg');
 
-var configtext =
-""+fs.readFilesSync("/home/studentuser/certs/postGISConnection.js");
+var configtext =""+fs.readFileSync("/home/studentuser/certs/postGISConnection.js");
 
 // now convert the configuration file into the correct format -i.e. a name/value pair array
 var configarray = configtext.split(",");
 var config = {};
 for (var i = 0; i < configarray.length; i++) {
-	var split = configarray[i].split(",");
-	config[split [0].trim()] = split[1].trim();
+	var split = configarray[i].split(":");
+	config[split[0].trim()] = split[1].trim();
 }
 var pool = new pg.Pool(config); 
 
