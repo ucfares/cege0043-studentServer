@@ -42,7 +42,7 @@ app.get('/postgistest', function (req, res) {
 				console.log("not able to get connection "+ err);
 				res.status(400).send(err);
 			}
-			res.status(200).send(results.rows);
+			res.status(200).send(result.rows);
 		});
 	});
 });
